@@ -66,11 +66,38 @@ async function generatePDF(nombres, expedientes, fecha, cantidad, medicamento, m
 }
 
 function agregarPanel() {
-    var panel2 = document.getElementById("panel2");
-    var panel3 = document.getElementById("panel3");
-     if (panel2.style.display == "none"){
-        panel2.style.display = 'block';
-     } else {
-        panel3.style.display = 'block';
-     }
+   var panel2 = document.getElementById("panel2");
+   var panel3 = document.getElementById("panel3");
+   var btnAñadir = document.getElementById("añadir");
+   var btnEliminar = document.getElementById("eliminar");
+   btnEliminar.removeAttribute('disabled');
+   if (panel2.style.display == "none"){
+      panel2.style.display = 'block';
+   } else {
+      panel3.style.display = 'block';
+   }
+
+   if (panel2.style.display == 'block' && panel3.style.display == 'block'){
+      //btnAñadir.style.disabled = 'true';
+      btnAñadir.setAttribute('disabled','');
+   }
+}
+
+function eliminarPanel() {
+   var panel2 = document.getElementById("panel2");
+   var panel3 = document.getElementById("panel3");
+   var btnEliminar = document.getElementById("eliminar");
+   var btnAñadir = document.getElementById("añadir");
+   if (panel3.style.display == "block"){
+      panel3.style.display = 'none';
+   } else {
+      panel2.style.display = 'none';
+   }
+
+   if (panel2.style.display == 'none' && panel3.style.display == 'none'){
+      btnEliminar.setAttribute('disabled','');
+   }
+   if (panel2.style.display == 'none' || panel3.style.display == 'none'){
+      btnAñadir.removeAttribute('disabled');
+   }
 }
